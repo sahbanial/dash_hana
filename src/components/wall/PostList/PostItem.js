@@ -16,7 +16,7 @@ const PostItem = (props) => {
   const [message, setMessage] = useState("");
   const [isLike, setIsLike] = React.useState(false);
   const {addComment,addLike,deletePost} =useMutationPost();
-  const {selectedProject} =usePostContext();
+  const {selectedProject,myRole} =usePostContext();
   const [modalDelete,setModalDelete] =React.useState(false);
   const [modalEdit,setModalEdit] =React.useState(false);
   function deleteMyPost(){
@@ -99,10 +99,10 @@ const PostItem = (props) => {
           <Button color="white">
             <Icons.Share2 size={15} color="gray" />
           </Button>
-         {isMyPost && <Button color="white">
+         {isMyPost && myRole !=="OBSERVER" && <Button color="white">
             <Icons.Edit size={15} color="gray" onClick={()=>setModalEdit(true)} />
           </Button>}
-          {isMyPost && <Button color="white">
+          {isMyPost && myRole !=="OBSERVER" && <Button color="white">
             <Icons.Trash size={15} color="gray" onClick={()=>setModalDelete(!modalDelete)}/>
           </Button>}
         </div>
@@ -157,7 +157,7 @@ const PostItem = (props) => {
           <div className="media mb-2">
             <Avatar className="mr-3 size-36" src={user?.photoUrl} />
             <div className="media-body">
-              <Input
+              { myRole !=="OBSERVER" && <Input
                 type="textarea"
                 id="required"
                 className="border-0"
@@ -165,7 +165,7 @@ const PostItem = (props) => {
                 onKeyPress={(event) => _handleKeyPress(event)}
                 value={message}
                 placeholder="Type Comments"
-              />
+              />}
             </div>
           </div>
         </div>

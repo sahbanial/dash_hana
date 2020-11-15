@@ -23,7 +23,7 @@ const CommentBox = (props) => {
   });
   const [modalDelete,setModalDelete] =React.useState(false);
   const [modalEdit,setModalEdit] =React.useState(false);
-  const {selectedProject} =usePostContext();
+  const {selectedProject,myRole} =usePostContext();
   const {deleteComment} =useMutationPost();
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -97,12 +97,12 @@ const CommentBox = (props) => {
        
         <div className="flex-row">
         <div className="d-flex ">
-          <Button >
+          {myRole !=="OBSERVER" && <Button >
             <Edit size={15} color="gray" onClick={()=>setModalEdit(!modalEdit)} />
-          </Button>
-          <Button>
+          </Button>}
+          {myRole !=="OBSERVER" && <Button>
             <Trash size={15} color="gray" onClick={()=>setModalDelete(!modalDelete)} />
-          </Button>
+          </Button>}
         </div>
         </div>
         {isComment === true ? <div className="media mt-3">
