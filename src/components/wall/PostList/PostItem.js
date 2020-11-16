@@ -154,10 +154,11 @@ const PostItem = (props) => {
           ))}
         </div>
         <div className="jr-wall-comment-box">
+        { myRole !=="OBSERVER" &&
           <div className="media mb-2">
             <Avatar className="mr-3 size-36" src={user?.photoUrl} />
             <div className="media-body">
-              { myRole !=="OBSERVER" && <Input
+           <Input
                 type="textarea"
                 id="required"
                 className="border-0"
@@ -165,9 +166,9 @@ const PostItem = (props) => {
                 onKeyPress={(event) => _handleKeyPress(event)}
                 value={message}
                 placeholder="Type Comments"
-              />}
+              />
             </div>
-          </div>
+          </div>}
         </div>
       </div>
     </Card>
