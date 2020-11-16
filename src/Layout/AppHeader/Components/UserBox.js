@@ -28,6 +28,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import city3 from "../../../assets/utils/images/dropdown-header/city3.jpg";
 import avatar1 from "../../../assets/utils/images/avatars/1.jpg";
 import avatar2 from "../../../assets/utils/images/avatars/2.jpg";
+import { useQueryProfile } from "DemoPages/Wall/post.hooks";
+
+const UserProfile=()=>{
+  const {data} =useQueryProfile();
+  return <><div className="widget-content-left  ml-3 header-user-info">
+  <div className="widget-heading">{data?.fullName}</div>
+  <div className="widget-subheading">VP People Manager</div>
+</div></>
+}
+const UserName =()=> { 
+  const {data} =useQueryProfile();
+  return (
+      <div className="widget-content-left">
+        <div className="widget-heading">
+        {data?.fullName}
+        </div>
+        <div className="widget-subheading opacity-8">
+          A short profile description
+        </div>
+  </div>
+ )
+}
 
 class UserBox extends React.Component {
   constructor(props) {
@@ -89,13 +111,7 @@ class UserBox extends React.Component {
                                   alt=""
                                 />
                               </div>
-                              <div className="widget-content-left">
-                                <div className="widget-heading">
-                                  Alina Mcloughlin
-                                </div>
-                                <div className="widget-subheading opacity-8">
-                                  A short profile description
-                                </div>
+                              <UserName/>
                               </div>
                               <div className="widget-content-right mr-2">
                                 <Button
@@ -109,7 +125,7 @@ class UserBox extends React.Component {
                           </div>
                         </div>
                       </div>
-                    </div>
+                     
                     <div
                       className="scroll-area-xs"
                       style={{
@@ -199,10 +215,7 @@ class UserBox extends React.Component {
                   </DropdownMenu>
                 </UncontrolledButtonDropdown>
               </div>
-              <div className="widget-content-left  ml-3 header-user-info">
-                <div className="widget-heading">Alina Mclourd</div>
-                <div className="widget-subheading">VP People Manager</div>
-              </div>
+              <UserProfile/>
             </div>
           </div>
         </div>

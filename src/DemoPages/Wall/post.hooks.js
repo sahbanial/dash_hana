@@ -285,3 +285,21 @@ export const useQueryQuestions =(project= null)=>{
   });
   return {data:data?.getFivePoints}
 }
+const ME =gql`
+query{
+  getMyProfile{
+    id
+    lastName
+    firstName
+    userName
+    fullName
+    photoUrl
+  }
+}
+`
+export const useQueryProfile =()=>{
+  const {data} =useQuery(ME);
+  return {
+    data:data?.getMyProfile
+  }
+}

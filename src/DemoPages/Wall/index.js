@@ -27,7 +27,7 @@ import {
 } from "./data";
 import Communities from "components/wall/Communities/index";
 import { PostProvider, usePostContext } from "./context/PostContext";
-import { useMutationQuestion, useQueryOrganisation, useQueryQuestions } from "./post.hooks";
+import { useMutationQuestion, useQueryOrganisation, useQueryProfile, useQueryQuestions } from "./post.hooks";
 import OrganisationList from "./components/OrganisationList";
 import Rating from "react-rating";
 import { Button, CardBody, CardTitle ,Card, Modal, ModalBody, Input, ModalFooter} from "reactstrap";
@@ -114,7 +114,8 @@ const WallQuestion = () => {
 const WallContainer = ({ match }) => {
   const { data } = usePostContext();
   const { data: organisations } = useQueryOrganisation();
-  
+  const {data:profile} =useQueryProfile();
+  console.log({profile})
   return (
     <Fragment>
       <ThemeOptions />
@@ -127,7 +128,7 @@ const WallContainer = ({ match }) => {
               <div className="row">
                 <div className="d-none d-sm-block col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
                   <CustomScrollbars className="jr-wall-scroll scrollbar">
-                    <Profile user={user} userInfo={userInfo} />
+                    <Profile user={profile} userInfo={profile} />
                     <OrganisationList data={organisations} />
                   </CustomScrollbars>
                 </div>

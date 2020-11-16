@@ -1,9 +1,10 @@
 import React from "react";
 import { postList } from "../data";
-import { useQueryPosts } from "../post.hooks";
+import { useQueryOrganisation, useQueryPosts } from "../post.hooks";
 const PostContext = React.createContext();
 const PostProvider = (props) => {
   const [data, setData] = React.useState([]);
+  const { data: organisations } = useQueryOrganisation();
   const [selectedProject,setSelectedProject] =React.useState(props?.selectedProject);
   const {data:dataPost} = useQueryPosts(selectedProject,props?.tag);
   const [myRole,setMyRole] =React.useState('');
@@ -24,6 +25,15 @@ const PostProvider = (props) => {
       setData(dataPost);
     }
   }, [dataPost,selectedProject]);
+  React.useEffect(()=>{
+    console.log({organisations})
+      if(organisations?.length){
+        let first = organisations?.[1]?.levels?.[0]?.projects?.[0];
+        if(first){
+          setSelectedProject(first?.id)
+        }
+      }
+  },[organisations])
   return (
     <PostContext.Provider
       value={{

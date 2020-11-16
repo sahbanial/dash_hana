@@ -15,21 +15,21 @@ const Profile = (props) => {
   };
 
   const {user, userInfo} = props;
-  const {id, name, image, address} = user;
-  const {followers, following, frinds} = userInfo;
+
+  //const {followers, following, frinds} = userInfo;
     return (
       <>
         <div className="jr-profileon">
           <div className="jr-profileon-thumb jr-profileon-thumb-htctrcrop">
-            <img src={image} alt=''/>
+            <img src={user?.photoUrl} alt=''/>
           </div>
           <div className="jr-profileon-content">
-            <p className="jr-profileon-title">{name}</p>
-            <span className="jr-fs-sm">{address}</span>
+            <p className="jr-profileon-title">{user?.fullName}</p>
+            <span className="jr-fs-sm">{user?.address}</span>
           </div>
         </div>
 
-        <div className="jr-follower text-center">
+        {/* <div className="jr-follower text-center">
           <ul className="jr-follower-list">
             <li>
               <span className="jr-follower-title">{followers}</span>
@@ -44,7 +44,7 @@ const Profile = (props) => {
               <span>project</span>
             </li>
           </ul>
-        </div>
+        </div> */}
      
       </>
     )
